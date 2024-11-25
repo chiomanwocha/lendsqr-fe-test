@@ -1,0 +1,51 @@
+@import "../../../assets/styles/variables";
+
+.dropdown {
+  position: relative;
+
+  .menu-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #545f7d;
+    cursor: pointer;
+    padding: 5px;
+  }
+
+  .menu {
+    position: absolute;
+    top: 100%; // Position below the button
+    right: 0;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+    padding: 8px 0;
+    width: 200px;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #213f7d;
+    @include transition(background-color);
+
+    &:hover {
+      background: #f3f4f6;
+    }
+
+    .icon {
+      margin-right: 10px;
+      font-size: 18px;
+      color: #545f7d;
+    }
+
+    .label {
+      flex-grow: 1;
+    }
+  }
+}

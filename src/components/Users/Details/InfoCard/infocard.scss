@@ -1,0 +1,152 @@
+@import "../../../../assets/styles/variables";
+
+@mixin title() {
+  font-size: 22px;
+  font-weight: 500;
+  color: $navy-blue;
+  margin-bottom: 8px;
+}
+
+@mixin subtitle() {
+  font-size: 14px;
+  color: $slate-blue;
+}
+
+.info-wrapper {
+  box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  padding: 30px 30px 0 30px;
+  @include flex(column, left, left, 30px);
+}
+
+ul.nav {
+  list-style-type: none;
+  padding: 0px;
+  @include flex(row, center, space-between);
+  li {
+    font-weight: 400;
+    padding: 10px 25px;
+    text-wrap: nowrap;
+    cursor: pointer;
+    &:hover {
+      color: $turquoise;
+      @include transition(color);
+    }
+    &.active {
+      background-color: transparent;
+      border-bottom: 2px solid $turquoise;
+      color: $turquoise;
+    }
+  }
+}
+
+.info-container {
+  @include flex(row, center, left, 20px);
+}
+
+.img-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.details {
+  // @mixin flex($direction: row, $align: center, $justify: center, $gap: 0) {
+  @include flex(row, center, left, 20px);
+  .full-name {
+    @include title();
+  }
+  .account-number {
+    font-size: 14px;
+    color: $slate-blue;
+  }
+}
+
+.tier {
+  @include subtitle();
+
+  border-left: 1px solid #dedfe5;
+  border-right: 1px solid #dedfe5;
+  padding: 19px 30px;
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+.financials {
+  @include subtitle();
+  .amount {
+    @include title();
+  }
+}
+
+.loading-skeleton {
+  background-color: #e0e0e0;
+  border-radius: 50% !important;
+  animation: pulse 1.5s infinite;
+}
+
+.loading-text {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite;
+  &.full-name-skeleton {
+    width: 120px;
+    height: 22px;
+    margin-bottom: 10px;
+  }
+  &.account-number-skeleton {
+    width: 80px;
+    height: 16px;
+  }
+  &.tier-skeleton {
+    width: 100px;
+    height: 16px;
+    margin-bottom: 10px;
+  }
+  &.amount-skeleton {
+    width: 80px;
+    height: 22px;
+    margin-bottom: 10px;
+  }
+  &.bank-details-skeleton {
+    width: 150px;
+    height: 16px;
+  }
+  &.nav-skeleton {
+    width: 120px;
+    height: 20px;
+    margin: 5px 0;
+  }
+}
+
+.stars-skeleton {
+  display: flex;
+  gap: 10px;
+  .loading-circle {
+    width: 16px;
+    height: 16px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}

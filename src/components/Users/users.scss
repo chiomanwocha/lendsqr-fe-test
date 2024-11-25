@@ -1,0 +1,13 @@
+@import "../../assets/styles/variables";
+
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+  color: $navy-blue;
+  margin-bottom: 40px;
+}
+
+.cards-container {
+  @include flex(row, left, left, 26px);
+  margin-bottom: 40px;
+}

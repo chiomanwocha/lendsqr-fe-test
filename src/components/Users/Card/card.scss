@@ -1,0 +1,49 @@
+@import "../../../assets/styles/variables";
+
+.card {
+  width: 180px;
+  box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  padding: 20px 30px;
+
+  .title {
+    font-size: 14px;
+    font-weight: 500;
+    color: $slate-blue;
+    margin: 14px 0 12px;
+    text-transform: uppercase;
+  }
+
+  .value {
+    font-size: 24px;
+    font-weight: 600;
+    color: $navy-blue
+  }
+
+  &.loading {
+    .skeleton {
+      background-color: rgba(200, 200, 200, 0.2);
+      border-radius: 4px;
+      animation: shimmer 1.5s infinite ease-in-out;
+    }
+
+    .icon-skeleton {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 14px;
+      border-radius: 50%;
+    }
+
+    .title-skeleton {
+      width: 80%;
+      height: 16px;
+      margin: 14px 0 12px;
+    }
+
+    .value-skeleton {
+      width: 60%;
+      height: 24px;
+    }
+  }
+}

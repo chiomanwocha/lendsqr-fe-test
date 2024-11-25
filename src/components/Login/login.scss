@@ -1,0 +1,71 @@
+@import "../../assets/styles/variables";
+
+$section-width: 50%;
+
+.wrapper {
+  @include flex();
+  height: 100vh;
+  .left-content {
+    width: $section-width;
+    padding: 106px 69px 0 97px;
+    @include flex(column, left, left, 139px);
+    background: $off-white;
+    .logo-container {
+      padding: 0 0 0 30px;
+    }
+    .img-container {
+      max-width: 600px;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    @media (max-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+  .right-content {
+    width: $section-width;
+    padding: 0 157px 0 100px;
+    @include flex();
+    align-items: center;
+    div {
+      width: 100%;
+      .header {
+        h2 {
+          font-size: 40px;
+          font-weight: 700;
+          letter-spacing: -4%;
+          color: $navy-blue;
+          margin-bottom: 10px;
+        }
+        p {
+          color: $slate-blue;
+          margin-bottom: 60px;
+        }
+      }
+      form {
+        @include flex(column, left, left, 24px);
+        p {
+          margin: 0 0 6px;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 10%;
+          color: $turquoise;
+          cursor: pointer;
+          width: fit-content;
+        }
+      }
+    }
+    @media (max-width: $breakpoint-md) {
+      width: 70%;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    @media (max-width: $breakpoint-sm) {
+      width: 100%;
+      padding: 0 20px;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+.filter-dropdown {
+  position: relative;
+}
+.filter-dropdown button {
+  padding: 0;
+}
+.filter-dropdown .filter-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.filter-dropdown .filter-button img {
+  width: 16px;
+  height: 16px;
+}
+.filter-dropdown .filter-form {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 270px;
+  z-index: 10;
+}
+.filter-dropdown .filter-form .form-group {
+  margin-bottom: 15px;
+}
+.filter-dropdown .filter-form .form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #545f7d;
+  margin-bottom: 8px;
+}
+.filter-dropdown .filter-form .form-group input,
+.filter-dropdown .filter-form .form-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+}
+.filter-dropdown .filter-form .form-group input:focus,
+.filter-dropdown .filter-form .form-group select:focus {
+  outline: none;
+  border-color: #39cdcc;
+  box-shadow: 0 0 0 2px rgba(57, 205, 204, 0.3);
+}
+.filter-dropdown .filter-form .form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.filter-dropdown .filter-form .form-actions .reset-btn,
+.filter-dropdown .filter-form .form-actions .filter-btn {
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.filter-dropdown .filter-form .form-actions .reset-btn:focus,
+.filter-dropdown .filter-form .form-actions .filter-btn:focus {
+  outline: none;
+}
+.filter-dropdown .filter-form .form-actions .reset-btn {
+  background: #f3f4f6;
+  color: #545f7d;
+}
+.filter-dropdown .filter-form .form-actions .reset-btn:hover {
+  background: #e4e4e4;
+}
+.filter-dropdown .filter-form .form-actions .filter-btn {
+  background: #39cdcc;
+  color: #ffffff;
+}
+.filter-dropdown .filter-form .form-actions .filter-btn:hover {
+  background: #2ea9a8;
+}/*# sourceMappingURL=filter.css.map */

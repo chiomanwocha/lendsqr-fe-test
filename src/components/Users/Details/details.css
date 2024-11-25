@@ -1,0 +1,37 @@
+@keyframes shimmer {
+  0% {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+  50% {
+    background-color: rgba(230, 230, 230, 0.4);
+  }
+  100% {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+}
+.back {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 13px;
+  color: #545f7d;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.info-wrapper {
+  margin-top: 30px;
+  box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  padding: 30px;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #213f7d;
+  margin-bottom: 30px;
+}/*# sourceMappingURL=details.css.map */

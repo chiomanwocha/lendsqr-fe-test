@@ -1,0 +1,50 @@
+@keyframes shimmer {
+  0% {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+  50% {
+    background-color: rgba(230, 230, 230, 0.4);
+  }
+  100% {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+}
+.card {
+  width: 180px;
+  box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  padding: 20px 30px;
+}
+.card .title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #545f7d;
+  margin: 14px 0 12px;
+  text-transform: uppercase;
+}
+.card .value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #213f7d;
+}
+.card.loading .skeleton {
+  background-color: rgba(200, 200, 200, 0.2);
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+.card.loading .icon-skeleton {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+}
+.card.loading .title-skeleton {
+  width: 80%;
+  height: 16px;
+  margin: 14px 0 12px;
+}
+.card.loading .value-skeleton {
+  width: 60%;
+  height: 24px;
+}/*# sourceMappingURL=card.css.map */

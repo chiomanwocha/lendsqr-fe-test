@@ -1,0 +1,23 @@
+@keyframes shimmer {
+  0% {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+  50% {
+    background-color: rgba(230, 230, 230, 0.4);
+  }
+  100% {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+}
+.body {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  gap: 0;
+}
+.body main {
+  padding: 60px;
+  background-color: #fbfbfb;
+  width: calc(100vw - 300px);
+}/*# sourceMappingURL=shell.css.map */

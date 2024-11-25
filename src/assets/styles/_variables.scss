@@ -1,0 +1,35 @@
+//colors
+$off-white: #fdfdfd;
+$turquoise: #39cdcc;
+$navy-blue: #213f7d;
+$slate-blue: #545f7d;
+
+//screens
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+
+//mixins
+@mixin flex($direction: row, $align: center, $justify: center, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+@mixin transition($type: background-color) {
+  transition: $type 0.3s ease;
+}
+
+@keyframes shimmer {
+  0% {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+  50% {
+    background-color: rgba(230, 230, 230, 0.4);
+  }
+  100% {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+}
