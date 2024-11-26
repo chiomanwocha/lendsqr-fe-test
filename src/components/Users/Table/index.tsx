@@ -3,7 +3,7 @@ import { TableProps } from "../../../types";
 import RenderIf from "../../customs/RenderIf";
 import Pagination from "./Pagination";
 import FilterDropdown from "../../customs/FilterDropdown";
-import SkeletonRows from "./SkeletonRow";
+import SkeletonRows from "./SkeletonRows";
 import "./table.scss";
 
 const Table = ({
@@ -54,13 +54,15 @@ const Table = ({
           </RenderIf>
         </tbody>
       </table>
-      <RenderIf condition={!loading}>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          itemsPerPage={itemsPerPage}
-        />
-      </RenderIf>
+      <div className="footer-pagination">
+        <RenderIf condition={!loading}>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            itemsPerPage={itemsPerPage}
+          />
+        </RenderIf>
+      </div>
     </div>
   );
 };

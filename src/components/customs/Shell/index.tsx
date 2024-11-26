@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Navbar";
 import Sidebar from "../Sidebar";
 import "./shell.scss";
 
 const Shell = ({ children }: { children: React.ReactNode }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div>
-      <Navbar />
+    <div className="shell">
+      <Navbar open={open} setOpen={setOpen} />
       <div className="body">
-        <Sidebar />
+        <Sidebar setOpen={setOpen} />
         <main>{children}</main>
       </div>
     </div>

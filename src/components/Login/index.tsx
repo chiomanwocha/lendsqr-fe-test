@@ -6,8 +6,7 @@ import useLogin from "../../hooks/useLogin";
 import "./login.scss";
 
 const Login = () => {
-  const { navigate, details, handleInputChange, isDisabled } = useLogin();
-
+  const { details, handleInputChange, isDisabled, handleSubmit } = useLogin();
   return (
     <section className="wrapper">
       <section className="left-content">
@@ -24,25 +23,20 @@ const Login = () => {
             <h2>Welcome!</h2>
             <p>Enter details to login.</p>
           </div>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              navigate("/users");
-            }}
-          >
+          <form onSubmit={handleSubmit}>
             <Input
               placeholder="Email"
               type="email"
               value={details.email}
               name="email"
-              onChange={(e) => handleInputChange(e)}
+              onChange={handleInputChange}
             />
             <Input
               placeholder="Password"
               type="password"
               name="password"
               value={details.password}
-              onChange={(e) => handleInputChange(e)}
+              onChange={handleInputChange}
             />
             <p role="button">Forgot PASSWORD?</p>
             <Button

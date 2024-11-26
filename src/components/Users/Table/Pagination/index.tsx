@@ -10,6 +10,14 @@ const Pagination = ({
 }: PaginationProps) => {
   const { navigate, getPaginationRange } = usePagination();
 
+  const handlePageChange = (page: number) => {
+    navigate(`/users?page=${page}`);
+  };
+
+  const handleItemsPerPageChange = (value: string) => {
+    navigate(`/users?page=1&per_page=${value}`);
+  };
+
   return (
     <div className="pagination">
       <div className="pagination-info">
@@ -17,9 +25,7 @@ const Pagination = ({
         <select
           className="items-per-page"
           value={itemsPerPage}
-          onChange={(e) => {
-            navigate(`/users?page=1&per_page=${e.target.value}`);
-          }}
+          onChange={(e) => handleItemsPerPageChange(e.target.value)}
         >
           {["10", "25", "50", "100"].map((page) => (
             <option value={page} key={page}>
@@ -33,22 +39,18 @@ const Pagination = ({
         <button
           className="pagination-button prev"
           disabled={currentPage === 1}
-          onClick={() => {
-            navigate(`/users?page=${currentPage - 1}`);
-          }}
+          onClick={() => handlePageChange(currentPage - 1)}
         >
           <NavBtn />
         </button>
         {getPaginationRange(currentPage, totalPages).map((page, index) => (
           <span
+            key={`${page}-${index}`}
             className={`pagination-page ${
               currentPage === page ? "active" : ""
             }`}
             role="button"
-            key={`${page}${index}`}
-            onClick={() => {
-              navigate(`/users?page=${page}`);
-            }}
+            onClick={() => handlePageChange(Number(page))}
           >
             {page}
           </span>
@@ -56,12 +58,26 @@ const Pagination = ({
         <button
           className="pagination-button"
           disabled={currentPage === totalPages}
-          onClick={() => {
-            navigate(`/users?page=${currentPage + 1}`);
-          }}
+          onClick={() => handlePageChange(currentPage + 1)}
         >
           <NavBtn />
         </button>
+      </div>
+      <div className="page-list">
+        <span>Page</span>
+        <select
+          className="page"
+          value={currentPage}
+          onChange={(e) =>
+            navigate(`/users?page=${e.target.value}&per_page=${itemsPerPage}`)
+          }
+        >
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <option value={page} key={page}>
+              {page}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

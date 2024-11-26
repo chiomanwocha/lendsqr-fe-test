@@ -51,7 +51,7 @@ const FilterDropdown = ({
             <select
               value={details.organization}
               name="organization"
-              onChange={(e) => handleOnChange(e)}
+              onChange={handleOnChange}
             >
               <option value="">All</option>
               {Array.from(organizations).map((org) => (
@@ -64,7 +64,7 @@ const FilterDropdown = ({
             <Input
               placeholder="Username"
               value={details.username}
-              onChange={(e) => handleOnChange(e)}
+              onChange={handleOnChange}
               name="username"
             />
           </div>
@@ -74,7 +74,7 @@ const FilterDropdown = ({
               placeholder="Email"
               type="email"
               value={details.email}
-              onChange={(e) => handleOnChange(e)}
+              onChange={handleOnChange}
               name="email"
             />
           </div>
@@ -84,7 +84,7 @@ const FilterDropdown = ({
               placeholder="Date"
               type="date"
               value={details.date ?? ""}
-              onChange={(e) => handleOnChange(e)}
+              onChange={handleOnChange}
               name="date"
             />
           </div>
@@ -93,7 +93,7 @@ const FilterDropdown = ({
             <Input
               placeholder="Phone Number"
               value={details.phone_number}
-              onChange={(e) => handleOnChange(e)}
+              onChange={handleOnChange}
               name="phone_number"
             />
           </div>
@@ -102,7 +102,7 @@ const FilterDropdown = ({
             <select
               value={details.status}
               name="status"
-              onChange={(e) => handleOnChange(e)}
+              onChange={handleOnChange}
             >
               <option value="">All</option>
               {Array.from(status).map((item) => (

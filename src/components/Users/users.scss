@@ -5,9 +5,35 @@ h2 {
   font-weight: 500;
   color: $navy-blue;
   margin-bottom: 40px;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 20px;
+  }
+}
+
+.header-pagination {
+  display: none;
+
+  @media (max-width: $breakpoint-md) {
+    display: block;
+  }
 }
 
 .cards-container {
   @include flex(row, left, left, 26px);
   margin-bottom: 40px;
+
+  @media (max-width: $breakpoint-lg) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    @include flex(column, left, left, 10px);
+  }
 }

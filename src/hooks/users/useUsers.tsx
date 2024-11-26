@@ -17,6 +17,7 @@ const useUsers = () => {
   const phone_number = params.get("phone_number");
   const status = params.get("status");
 
+  const [openDropdown, setOpenDropDown] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const filters = useMemo(() => {
@@ -93,6 +94,8 @@ const useUsers = () => {
     currentPage,
     itemsPerPage,
     totalPages,
+    openDropdown,
+    setOpenDropDown,
   };
 };
 

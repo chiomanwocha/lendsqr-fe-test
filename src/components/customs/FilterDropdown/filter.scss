@@ -7,11 +7,13 @@
     padding: 0;
     width: fit-content;
   }
+
   .filter-button {
     background: none;
     border: none;
     cursor: pointer;
     @include flex(row, center);
+
     img {
       width: 16px;
       height: 16px;
@@ -20,7 +22,7 @@
 
   .filter-form {
     position: absolute;
-    top: 100%; // Position below the button
+    top: 100%;
     right: 0;
     background: #ffffff;
     border: 1px solid #e4e4e4;
@@ -58,6 +60,7 @@
 
     .form-actions {
       @include flex(row, left, space-between, 14px);
+
       .reset-btn,
       .filter-btn {
         padding: 10px 15px;

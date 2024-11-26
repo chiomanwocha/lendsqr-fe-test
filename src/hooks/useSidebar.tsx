@@ -23,6 +23,10 @@ const useSidebar = () => {
       name: "CUSTOMERS",
       children: defaultMenu,
     },
+    {
+      name: "BUSINESS",
+      children: defaultMenu,
+    },
   ];
 
   const navigate = useNavigate();

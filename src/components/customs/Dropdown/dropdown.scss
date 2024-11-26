@@ -7,16 +7,16 @@
     background: none;
     border: none;
     font-size: 20px;
-    color: #545f7d;
+    color: $slate-blue;
     cursor: pointer;
     padding: 5px;
   }
 
   .menu {
     position: absolute;
-    top: 100%; // Position below the button
+    top: 100%;
     right: 0;
-    background: #fff;
+    background: $off-white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
@@ -26,22 +26,21 @@
   }
 
   .menu-item {
-    display: flex;
-    align-items: center;
+    @include flex(row, center);
     padding: 10px 15px;
     cursor: pointer;
     font-size: 14px;
-    color: #213f7d;
+    color: $navy-blue;
     @include transition(background-color);
 
     &:hover {
-      background: #f3f4f6;
+      background: lighten($slate-blue, 50%);
     }
 
     .icon {
       margin-right: 10px;
       font-size: 18px;
-      color: #545f7d;
+      color: $slate-blue;
     }
 
     .label {

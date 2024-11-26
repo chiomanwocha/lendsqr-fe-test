@@ -4,7 +4,7 @@ $section-width: 50%;
 
 .wrapper {
   @include flex();
-  font-family: 'AvenirNextLTPro', sans-serif;
+  font-family: "AvenirNextLTPro", sans-serif;
   height: 100vh;
   .left-content {
     width: $section-width;
@@ -21,7 +21,7 @@ $section-width: 50%;
         height: auto;
       }
     }
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $breakpoint-lg) {
       display: none;
     }
   }
@@ -59,7 +59,7 @@ $section-width: 50%;
         }
       }
     }
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $breakpoint-lg) {
       width: 70%;
       margin: 0 auto;
       padding: 0 20px;

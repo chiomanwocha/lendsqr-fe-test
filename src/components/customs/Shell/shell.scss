@@ -2,9 +2,22 @@
 
 .body {
   @include flex(row, left, left, 0);
+
   main {
     padding: 60px;
     background-color: #fbfbfb;
     width: calc(100vw - 300px);
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    nav {
+      display: none;
+    }
+
+    main {
+      padding: 20px;
+      background-color: #fbfbfb;
+      width: 100vw;
+    }
   }
 }

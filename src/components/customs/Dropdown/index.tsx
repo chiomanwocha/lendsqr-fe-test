@@ -1,18 +1,16 @@
-import { useState } from "react";
 import option from "../../../assets/icons/options.svg";
 import RenderIf from "../RenderIf";
 import { DropdownMenuProps } from "../../../types";
 import "./dropdown.scss";
 
-const DropdownMenu = ({ options }: DropdownMenuProps) => {
-  const [open, setOpen] = useState(false);
+const DropdownMenu = ({ isOpen, toggleDropdown, options }: DropdownMenuProps) => {
 
   return (
     <div className="dropdown">
-      <button className="menu-button" onClick={() => setOpen((prev) => !prev)}>
+      <button className="menu-button" onClick={toggleDropdown}>
         <img src={option} alt="options icon" />
       </button>
-      <RenderIf condition={open}>
+      <RenderIf condition={isOpen}>
         <div className="menu">
           {options.map((option, index) => (
             <div
@@ -20,7 +18,7 @@ const DropdownMenu = ({ options }: DropdownMenuProps) => {
               className="menu-item"
               onClick={() => {
                 option.onClick();
-                setOpen(false);
+                toggleDropdown()
               }}
             >
               <span className="icon">

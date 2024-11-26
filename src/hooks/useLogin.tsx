@@ -21,7 +21,13 @@ const useLogin = () => {
   }, [details]);
 
   const navigate = useNavigate();
-  return { navigate, details, handleInputChange, isDisabled };
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate("/users");
+  };
+
+  return { details, handleInputChange, isDisabled, handleSubmit };
 };
 
 export default useLogin;

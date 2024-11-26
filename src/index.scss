@@ -1,7 +1,15 @@
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
-body, input, select, button {
+body,
+input,
+select,
+button {
   font-family: "Work Sans", serif;
+}
+
+body {
+  background-color: #fbfbfb;
 }

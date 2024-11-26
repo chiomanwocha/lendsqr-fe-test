@@ -2,20 +2,17 @@
 
 .input-container {
   position: relative;
-  display: flex;
-  align-items: center;
+  @include flex(row, center);
   width: 100%;
 }
 
 input {
-  border: 2px solid #545f7d26;
+  border: 2px solid rgba(84, 95, 125, 0.15);
   border-radius: 5px;
   color: $slate-blue;
   background-color: white;
   padding: 16px 17.5px 12.5px;
-  @include transition(background-color);
-  @include transition(box-shadow);
-  // transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  @include transition(border-color);
   width: 100%;
 
   &::placeholder {

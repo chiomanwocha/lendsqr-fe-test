@@ -1,15 +1,15 @@
-//colors
+// Colors
 $off-white: #fdfdfd;
 $turquoise: #39cdcc;
 $navy-blue: #213f7d;
 $slate-blue: #545f7d;
 
-//screens
+// Breakpoints
 $breakpoint-sm: 480px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 
-//mixins
+// Mixins
 @mixin flex($direction: row, $align: center, $justify: center, $gap: 0) {
   display: flex;
   flex-direction: $direction;
@@ -18,10 +18,11 @@ $breakpoint-lg: 1024px;
   gap: $gap;
 }
 
-@mixin transition($type: background-color) {
-  transition: $type 0.3s ease;
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
 }
 
+// Animations
 @keyframes shimmer {
   0% {
     background-color: rgba(200, 200, 200, 0.2);
@@ -34,6 +35,7 @@ $breakpoint-lg: 1024px;
   }
 }
 
+// Fonts
 @font-face {
   font-family: "AvenirNextLTPro";
   src: url("../fonts/AvenirNextLTPro-Regular.otf") format("opentype");
@@ -52,5 +54,5 @@ $breakpoint-lg: 1024px;
   font-family: "AvenirNextLTPro";
   src: url("../fonts/AvenirNextLTPro-It.otf") format("opentype");
   font-weight: 300;
-  font-style: normal;
+  font-style: italic;
 }

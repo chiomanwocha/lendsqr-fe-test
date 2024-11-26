@@ -1,6 +1,6 @@
-import { SectionCompProps } from "../../../../types";
-import RenderIf from "../../../customs/RenderIf";
-import "../details.scss";
+import { SectionCompProps } from "../../../types";
+import RenderIf from "../../customs/RenderIf";
+import "./details.scss";
 
 const SectionComp = ({ section, cols, body, loading }: SectionCompProps) => {
   const loadingGrid = Array.from({ length: body.length });
@@ -15,7 +15,7 @@ const SectionComp = ({ section, cols, body, loading }: SectionCompProps) => {
             {loadingGrid.map((_, index) => (
               <div
                 className="loading-skeleton-box title-skeleton"
-                key={index}
+                key={`loading-${index}`}
               ></div>
             ))}
           </div>
@@ -26,7 +26,7 @@ const SectionComp = ({ section, cols, body, loading }: SectionCompProps) => {
           style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
         >
           {body.map((item, index) => (
-            <div key={index} className="section-item">
+            <div key={`item-${index}`} className="section-item">
               <p className="title">{item.title}</p>
               <p>{item.content}</p>
             </div>

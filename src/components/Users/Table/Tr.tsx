@@ -1,4 +1,4 @@
-import { TrProps } from "../../../../types";
+import { TrProps } from "../../../types";
 
 const Tr = ({
   onClick,

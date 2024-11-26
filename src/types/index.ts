@@ -8,6 +8,8 @@ export interface ButtonProps {
 }
 
 export interface DropdownMenuProps {
+  isOpen: boolean;
+  toggleDropdown: () => void;
   options: { label: string; icon: string; onClick: () => void }[];
 }
 
@@ -72,4 +74,9 @@ export interface PaginationProps {
   currentPage: number;
   totalPages: number;
   itemsPerPage: number;
+}
+
+export interface ShellNavigationProps {
+  open?: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }

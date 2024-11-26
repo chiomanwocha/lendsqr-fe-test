@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { InputProps } from "../../../types";
 import RenderIf from "../RenderIf";
-import "./input.css";
+import "./input.scss";
 
 const Input = ({
   placeholder,
@@ -27,7 +27,7 @@ const Input = ({
       <RenderIf condition={type === "password"}>
         <span
           className="toggle-visibility"
-          onClick={() => setShowPassword(!showPassword)}
+          onClick={() => setShowPassword((prev) => !prev)}
           role="button"
         >
           <RenderIf condition={showPassword} elseNode="SHOW">

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import Shell from "../customs/Shell";
 import Card from "./Card";
@@ -9,6 +10,8 @@ import StatusPill from "./StatusPill";
 import DropdownMenu from "../customs/Dropdown";
 import Tr from "./Table/Tr";
 import useUsers from "../../hooks/users/useUsers";
+import RenderIf from "../customs/RenderIf";
+import Pagination from "./Table/Pagination";
 import "./users.scss";
 
 const Users = () => {
@@ -22,12 +25,13 @@ const Users = () => {
     currentPage,
     itemsPerPage,
     totalPages,
+    openDropdown,
+    setOpenDropDown,
   } = useUsers();
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 500);
 
+  console.log("openDropdown", openDropdown);
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -44,6 +48,15 @@ const Users = () => {
             loading={loading}
           />
         ))}
+      </div>
+      <div className="header-pagination">
+        <RenderIf condition={!loading}>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            itemsPerPage={itemsPerPage}
+          />
+        </RenderIf>
       </div>
       <Table
         thead={thead}
@@ -65,8 +78,16 @@ const Users = () => {
             <td>
               <StatusPill status={item.status} />
             </td>
-            <td onClick={(e) => e.stopPropagation()}>
+            <td
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <DropdownMenu
+                isOpen={openDropdown === item.id}
+                toggleDropdown={() =>
+                  setOpenDropDown(openDropdown === item.id ? null : item.id)
+                }
                 options={[
                   {
                     label: "View Details",
