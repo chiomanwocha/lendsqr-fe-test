@@ -1,98 +1,110 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import users from "../../mocks/mock_users_500.json";
+import { fetchUserById } from "../../api/services";
+import { SingleUser } from "../../types";
 
 const useDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const user = users.find((user) => user.id === Number(id));
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<SingleUser>();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const fetchUser = async () => {
+    setLoading(true);
+    try {
+      const data = await fetchUserById(id);
+      setUser(data);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const userTier = useMemo(() => Math.floor(Math.random() * 3) + 1, []);
 
   const sections = [
     {
       title: "Personal Information",
-      cols: 5,
+      cols: 4,
       body: [
-        { title: "Full Name", content: user?.profile.full_name },
-        { title: "Phone Number", content: user?.phone },
-        { title: "Email Address", content: user?.email },
-        { title: "BVN", content: user?.profile.personal_info.bvn },
-        { title: "Gender", content: user?.profile.personal_info.gender },
         {
-          title: "Marital Status",
-          content: user?.profile.personal_info.marital_status,
+          title: "Full Name",
+          content: `${user?.profile?.firstName || ""} ${
+            user?.profile?.lastName || ""
+          }`,
         },
-        { title: "Children", content: user?.profile.personal_info.children },
-        {
-          title: "Type of Residence",
-          content: user?.profile.personal_info.type_of_residence,
-        },
+        { title: "Phone Number", content: user?.profile?.phoneNumber || "" },
+        { title: "Email Address", content: user?.email || "" },
+        { title: "BVN", content: user?.profile?.bvn || "" },
+        { title: "Gender", content: user?.profile?.gender || "" },
+        { title: "Address", content: user?.profile?.address || "" },
+        { title: "Currency", content: user?.profile?.currency || "" },
       ],
     },
     {
       title: "Education and Employment",
       cols: 4,
       body: [
-        {
-          title: "Level of Education",
-          content: user?.profile.education_and_employment.level_of_education,
-        },
+        { title: "Level of Education", content: user?.education?.level || "" },
         {
           title: "Employment Status",
-          content: user?.profile.education_and_employment.employment_status,
+          content: user?.education?.employmentStatus || "",
         },
         {
           title: "Sector of Employment",
-          content: user?.profile.education_and_employment.sector_of_employment,
+          content: user?.education?.sector || "",
         },
         {
           title: "Duration of Employment",
-          content:
-            user?.profile.education_and_employment.duration_of_employment,
+          content: user?.education?.duration || "",
         },
-        {
-          title: "Office Email",
-          content: user?.profile.education_and_employment.office_email,
-        },
+        { title: "Office Email", content: user?.education?.officeEmail || "" },
         {
           title: "Monthly Income",
-          content: user?.profile.education_and_employment.monthly_income,
+          content: user?.education?.monthlyIncome
+            ? user?.education?.monthlyIncome.join(" - ")
+            : "",
         },
         {
           title: "Loan Repayment",
-          content:
-            user?.profile.education_and_employment.loan_repayment.toLocaleString(),
+          content: user?.education?.loanRepayment || "",
         },
       ],
     },
     {
       title: "Socials",
-      cols: 4,
+      cols: 3,
       body: [
-        {
-          title: "Twitter",
-          content: user?.profile.socials.twitter,
-        },
-        {
-          title: "Facebook",
-          content: user?.profile.socials.facebook,
-        },
-        {
-          title: "Instagram",
-          content: user?.profile.socials.instagram,
-        },
+        { title: "Twitter", content: user?.socials?.twitter || "" },
+        { title: "Facebook", content: user?.socials?.facebook || "" },
+        { title: "Instagram", content: user?.socials?.instagram || "" },
       ],
     },
     {
       title: "Guarantors",
       cols: 4,
-      body:
-        user?.profile.guarantors.flatMap((guarantor) => [
-          { title: "Full Name", content: guarantor.full_name },
-          { title: "Phone Number", content: guarantor.phone_number },
-          { title: "Email Address", content: guarantor.email_address },
-          { title: "Relationship", content: guarantor.relationship },
-        ]) ?? [],
+      body: [
+        {
+          title: "Full Name",
+          content: `${user?.guarantor?.firstName || ""} ${
+            user?.guarantor?.lastName || ""
+          }`,
+        },
+        { title: "Phone Number", content: user?.guarantor?.phoneNumber || "" },
+        { title: "Gender", content: user?.guarantor?.gender || "" },
+        { title: "Address", content: user?.guarantor?.address || "" },
+      ],
     },
   ];
 
@@ -105,7 +117,7 @@ const useDetails = () => {
     "App and System",
   ];
 
-  return { setLoading, user, loading, sections, navigate, navigations };
+  return { user, loading, sections, navigate, navigations, userTier };
 };
 
 export default useDetails;

@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import Shell from "../../customs/Shell";
 import back from "../../../assets/icons/back.svg";
 import Header from "./Header";
@@ -9,14 +8,7 @@ import useDetails from "../../../hooks/users/useDetails";
 import "./details.scss";
 
 const Details = () => {
-  const { setLoading, user, loading, sections, navigate } = useDetails();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    const timer = setTimeout(() => setLoading(false), 500);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const { user, loading, navigate, sections } = useDetails();
 
   return (
     <Shell>
@@ -24,7 +16,7 @@ const Details = () => {
         <img src={back} alt="Back icon" />
         <span>Back to Users</span>
       </div>
-      <Header user={user} loading={loading} />
+      <Header loading={loading} />
       <InfoCard user={user} loading={loading} />
       <div className="details-wrapper">
         {sections.map((section) => (

@@ -1,78 +1,58 @@
+import { UserDetails, Users } from "../types";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router";
-import data from "../mocks/mock_users_500.json";
 
-const useFilterDropdown = (toggleDropdown: () => void) => {
-  const organizations = new Set(data.map((item) => item.organization));
-  const status = new Set(data.map((item) => item.status));
+const useFilterDropdown = (
+  data: Users,
+  details: UserDetails,
+  setDetails: React.Dispatch<React.SetStateAction<UserDetails>>,
+  toggleDropdown: () => void,
+  setPagination: React.Dispatch<
+    React.SetStateAction<{
+      page: number;
+      limit: number;
+    }>
+  >
+) => {
+  const organizations = new Set(data.map((item) => item?.orgName));
+  const statuses = ["inactive", "pending", "blacklisted", "active"];
 
-  const { search } = useLocation(); 
-  const params = new URLSearchParams(search);
-  const username = params.get("username");
-  const email = params.get("email");
-  const phone_number = params.get("phone_number");
-  const status_default = params.get("status");
-  const organization_default = params.get("organization");
-
-  const initial = {
-    organization: "",
-    username: "",
-    email: "",
-    date: "",
-    phone_number: "",
-    status: "",
-  };
-
-  const [details, setDetails] = useState<{
-    organization?: string;
-    username: string;
-    email: string;
-    date?: string;
-    phone_number: string;
-    status?: string;
-  }>(initial);
+  const [tempDetails, setTempDetails] = useState(details);
 
   const handleOnChange = (e: { target: { name: string; value: string } }) => {
-    setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setTempDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const navigate = useNavigate();
-
   const handleFilter = () => {
-    const copiedDetails = details;
-    delete copiedDetails.date;
+    setPagination({ page: 1, limit: 10 });
+    setDetails(tempDetails);
+    toggleDropdown();
+  };
 
-    const urlParams = Object.entries(
-      Object.fromEntries(
-        Object.entries(details).filter(([_, value]) => value !== "")
-      )
-    )
-      .map(
-        ([key, value]) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-      )
-      .join("&");
-    if (urlParams) {
-      navigate(`?page=1&per_page=10&${urlParams}`);
-      toggleDropdown();
-      setDetails(initial);
-    }
+  const handleReset = () => {
+    toggleDropdown();
+    setDetails({
+      orgName: "",
+      username: "",
+      email: "",
+      createdAt: "",
+    });
+    setPagination({ page: 1, limit: 10 });
+    setTempDetails({
+      orgName: "",
+      username: "",
+      email: "",
+      createdAt: "",
+    });
   };
 
   return {
-    organization_default,
-    username,
-    email,
-    phone_number,
-    status_default,
-    details,
     handleOnChange,
     organizations,
-    status,
-    setDetails,
-    initial,
-    navigate,
-    handleFilter
+    statuses,
+    handleFilter,
+    tempDetails,
+    setTempDetails,
+    handleReset,
   };
 };
 

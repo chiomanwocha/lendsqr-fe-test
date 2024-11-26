@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import Shell from "../customs/Shell";
 import Card from "./Card";
 import eye from "../../assets/icons/eye.svg";
@@ -16,24 +14,20 @@ import "./users.scss";
 
 const Users = () => {
   const {
-    setLoading,
     cards,
     loading,
     thead,
-    paginatedUsers,
     navigate,
-    currentPage,
-    itemsPerPage,
-    totalPages,
     openDropdown,
     setOpenDropDown,
+    users,
+    pagination,
+    setPagination,
+    formatDate,
+    getRandomStatus,
+    details,
+    setDetails,
   } = useUsers();
-
-  console.log("openDropdown", openDropdown);
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <Shell>
@@ -51,32 +45,30 @@ const Users = () => {
       </div>
       <div className="header-pagination">
         <RenderIf condition={!loading}>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            itemsPerPage={itemsPerPage}
-          />
+          <Pagination pagination={pagination} setPagination={setPagination} />
         </RenderIf>
       </div>
       <Table
         thead={thead}
-        currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
-        totalPages={totalPages}
+        pagination={pagination}
+        setPagination={setPagination}
+        details={details}
+        setDetails={setDetails}
         loading={loading}
+        data={users}
       >
-        {paginatedUsers.map((item: any) => (
+        {users?.map((item: any) => (
           <Tr
-            key={item.id}
-            onClick={() => navigate(`/users/details/${item.id}`)}
+            key={item?.id}
+            onClick={() => navigate(`/users/details/${item?.id}`)}
           >
-            <td>{item.organization}</td>
-            <td>{item.username}</td>
-            <td>{item.email}</td>
-            <td>{item.phone}</td>
-            <td>{item.date_joined}</td>
+            <td>{item?.orgName}</td>
+            <td>{item?.userName}</td>
+            <td>{item?.email}</td>
+            <td>{item?.profile?.phoneNumber}</td>
+            <td>{formatDate(item?.createdAt)}</td>
             <td>
-              <StatusPill status={item.status} />
+              <StatusPill status={getRandomStatus()} />
             </td>
             <td
               onClick={(e) => {
@@ -84,15 +76,15 @@ const Users = () => {
               }}
             >
               <DropdownMenu
-                isOpen={openDropdown === item.id}
+                isOpen={openDropdown === item?.id}
                 toggleDropdown={() =>
-                  setOpenDropDown(openDropdown === item.id ? null : item.id)
+                  setOpenDropDown(openDropdown === item?.id ? null : item?.id)
                 }
                 options={[
                   {
                     label: "View Details",
                     icon: eye,
-                    onClick: () => navigate(`/users/details/${item.id}`),
+                    onClick: () => navigate(`/users/details/${item?.id}`),
                   },
                   {
                     label: "Blacklist User",

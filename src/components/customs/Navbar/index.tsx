@@ -6,7 +6,6 @@ import arrow from "../../../assets/icons/arrow.svg";
 import hamburger from "../../../assets/icons/hamburger.svg";
 import avatar from "../../../assets/images/avatar.png";
 import Sidebar from "../Sidebar";
-import RenderIf from "../RenderIf";
 import "./navbar.scss";
 
 const Navbar = ({ open, setOpen }: ShellNavigationProps) => {

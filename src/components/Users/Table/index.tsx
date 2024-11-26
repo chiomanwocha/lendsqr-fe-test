@@ -9,9 +9,11 @@ import "./table.scss";
 const Table = ({
   thead,
   loading,
-  currentPage,
-  itemsPerPage,
-  totalPages,
+  pagination,
+  setPagination,
+  data,
+  details,
+  setDetails,
   children,
 }: TableProps) => {
   const [openFilter, setOpenFilter] = useState<string | null>(null);
@@ -27,11 +29,14 @@ const Table = ({
                   <span>{th}</span>
                   <RenderIf condition={th !== ""}>
                     <FilterDropdown
+                      details={details}
+                      setDetails={setDetails}
+                      data={data}
                       isOpen={openFilter === th}
                       toggleDropdown={() =>
                         setOpenFilter(openFilter === th ? null : th)
                       }
-                      pagination={{ currentPage, itemsPerPage }}
+                      setPagination={setPagination}
                     />
                   </RenderIf>
                 </span>
@@ -56,11 +61,7 @@ const Table = ({
       </table>
       <div className="footer-pagination">
         <RenderIf condition={!loading}>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            itemsPerPage={itemsPerPage}
-          />
+          <Pagination pagination={pagination} setPagination={setPagination} />
         </RenderIf>
       </div>
     </div>

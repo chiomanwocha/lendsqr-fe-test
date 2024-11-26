@@ -1,56 +1,43 @@
-import { useMemo, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import all from "../../assets/icons/users/all.svg";
 import active from "../../assets/icons/users/active.svg";
 import loans from "../../assets/icons/users/loans.svg";
 import savings from "../../assets/icons/users/savings.svg";
-import users from "../../mocks/mock_users_500.json";
+import { fetchUsers } from "../../api/services";
+import { UserDetails, UserParams } from "../../types";
 
 const useUsers = () => {
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const page = params.get("page");
-  const perPage = params.get("per_page");
-  const organization = params.get("organization");
-  const username = params.get("username");
-  const email = params.get("email");
-  const phone_number = params.get("phone_number");
-  const status = params.get("status");
+  const initial = {
+    orgName: "",
+    username: "",
+    email: "",
+    createdAt: "",
+  };
+  const [details, setDetails] = useState<UserDetails>(initial);
+  const [users, setUsers] = useState([]);
 
-  const [openDropdown, setOpenDropDown] = useState(null);
+  const [pagination, setPagination] = useState({ page: 1, limit: 10 });
   const [loading, setLoading] = useState(true);
+  const [openDropdown, setOpenDropDown] = useState(null);
 
-  const filters = useMemo(() => {
-    return users.filter((user) => {
-      return (
-        (!organization || user.organization.includes(organization)) &&
-        (!username || user.username.includes(username)) &&
-        (!email || user.email.includes(email)) &&
-        (!phone_number || user.phone.includes(phone_number)) &&
-        (!status || user.status === status)
-      );
-    });
-  }, [organization, username, email, phone_number, status]);
+  const fetchData = async (params: UserParams) => {
+    setLoading(true);
+    try {
+      const data = await fetchUsers(params);
+      setUsers(data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const currentPage = useMemo(() => {
-    return page ? Number(page) : 1;
-  }, [page]);
-
-  const itemsPerPage = useMemo(() => {
-    return perPage ? Number(perPage) : 10;
-  }, [perPage]);
+  useEffect(() => {
+    fetchData({ ...pagination, details });
+  }, [pagination, details]);
 
   const navigate = useNavigate();
-
-  const paginatedUsers = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filters.slice(startIndex, endIndex);
-  }, [filters, currentPage, itemsPerPage]);
-
-  const totalPages = useMemo(() => {
-    return Math.ceil(filters.length / itemsPerPage);
-  }, [filters, itemsPerPage]);
 
   const cards = [
     {
@@ -84,18 +71,45 @@ const useUsers = () => {
     "status",
     "",
   ];
+
+  function formatDate(isoDateString: string): string {
+    const date = new Date(isoDateString);
+
+    const options: Intl.DateTimeFormatOptions = {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    };
+
+    return date.toLocaleString("en-US", options);
+  }
+
+  const statuses = ["inactive", "pending", "blacklisted", "active"];
+
+  const getRandomStatus = (): string => {
+    const randomIndex = Math.floor(Math.random() * statuses.length);
+    return statuses[randomIndex];
+  };
+
   return {
-    setLoading,
     cards,
     loading,
     thead,
-    paginatedUsers,
     navigate,
-    currentPage,
-    itemsPerPage,
-    totalPages,
     openDropdown,
     setOpenDropDown,
+    users,
+    pagination,
+    setPagination,
+    fetchData,
+    formatDate,
+    getRandomStatus,
+    details,
+    setDetails,
+    initial,
   };
 };
 

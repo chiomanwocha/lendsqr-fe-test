@@ -3,20 +3,14 @@ import { PaginationProps } from "../../../../types";
 import usePagination from "../../../../hooks/users/usePagination";
 import "./pagination.scss";
 
-const Pagination = ({
-  currentPage,
-  totalPages,
-  itemsPerPage,
-}: PaginationProps) => {
-  const { navigate, getPaginationRange } = usePagination();
-
-  const handlePageChange = (page: number) => {
-    navigate(`/users?page=${page}`);
-  };
-
-  const handleItemsPerPageChange = (value: string) => {
-    navigate(`/users?page=1&per_page=${value}`);
-  };
+const Pagination = ({ pagination, setPagination }: PaginationProps) => {
+  
+  const {
+    getPaginationRange,
+    totalPages,
+    handlePageChange,
+    handleLimitChange,
+  } = usePagination(pagination, setPagination);
 
   return (
     <div className="pagination">
@@ -24,12 +18,12 @@ const Pagination = ({
         <span>Showing</span>
         <select
           className="items-per-page"
-          value={itemsPerPage}
-          onChange={(e) => handleItemsPerPageChange(e.target.value)}
+          value={pagination.limit}
+          onChange={(e) => handleLimitChange(e.target.value)}
         >
-          {["10", "25", "50", "100"].map((page) => (
-            <option value={page} key={page}>
-              {page}
+          {["10", "25", "50", "100"].map((limit) => (
+            <option value={limit} key={limit}>
+              {limit}
             </option>
           ))}
         </select>
@@ -38,16 +32,16 @@ const Pagination = ({
       <div className="pagination-controls">
         <button
           className="pagination-button prev"
-          disabled={currentPage === 1}
-          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={pagination.page === 1}
+          onClick={() => handlePageChange(pagination.page - 1)}
         >
           <NavBtn />
         </button>
-        {getPaginationRange(currentPage, totalPages).map((page, index) => (
+        {getPaginationRange(pagination.page, totalPages).map((page, index) => (
           <span
             key={`${page}-${index}`}
             className={`pagination-page ${
-              currentPage === page ? "active" : ""
+              pagination.page === page ? "active" : ""
             }`}
             role="button"
             onClick={() => handlePageChange(Number(page))}
@@ -57,8 +51,8 @@ const Pagination = ({
         ))}
         <button
           className="pagination-button"
-          disabled={currentPage === totalPages}
-          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={pagination.page === totalPages}
+          onClick={() => handlePageChange(pagination.page + 1)}
         >
           <NavBtn />
         </button>
@@ -67,10 +61,8 @@ const Pagination = ({
         <span>Page</span>
         <select
           className="page"
-          value={currentPage}
-          onChange={(e) =>
-            navigate(`/users?page=${e.target.value}&per_page=${itemsPerPage}`)
-          }
+          value={pagination.page}
+          onChange={(e) => handlePageChange(Number(e.target.value))}
         >
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
             <option value={page} key={page}>

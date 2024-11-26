@@ -27,6 +27,7 @@
   }
 
   .pagination-controls {
+    font-family: "Work Sans", serif;
     @include flex(row, center);
 
     .pagination-button,

@@ -1,6 +1,14 @@
 import { useNavigate } from "react-router";
 
-const usePagination = () => {
+const usePagination = (
+  pagination: { page: number; limit: number },
+  setPagination: React.Dispatch<
+    React.SetStateAction<{
+      page: number;
+      limit: number;
+    }>
+  >
+) => {
   const navigate = useNavigate();
   const getPaginationRange = (currentPage: number, totalPages: number) => {
     const range = [];
@@ -19,7 +27,24 @@ const usePagination = () => {
     }
     return range;
   };
-  return { navigate, getPaginationRange };
+
+  const totalPages = Math.ceil(500 / pagination.limit);
+
+  const handlePageChange = (newPage: number) => {
+    setPagination((prev) => ({ ...prev, page: newPage }));
+  };
+
+  const handleLimitChange = (newLimit: string) => {
+    setPagination({ page: 1, limit: Number(newLimit) });
+  };
+
+  return {
+    navigate,
+    getPaginationRange,
+    totalPages,
+    handlePageChange,
+    handleLimitChange,
+  };
 };
 
 export default usePagination;

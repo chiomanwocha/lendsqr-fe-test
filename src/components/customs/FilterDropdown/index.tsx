@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import filterIcon from "../../../assets/icons/filter.svg";
 import Input from "../Input";
 import RenderIf from "../RenderIf";
@@ -10,34 +9,25 @@ import "./filter.scss";
 const FilterDropdown = ({
   isOpen,
   toggleDropdown,
-  pagination,
+  data,
+  setPagination,
+  details,
+  setDetails,
 }: filterDropdownProps) => {
   const {
-    organization_default,
-    username,
-    email,
-    phone_number,
-    status_default,
-    details,
     handleOnChange,
     organizations,
-    status,
-    setDetails,
-    initial,
-    navigate,
+    statuses,
     handleFilter,
-  } = useFilterDropdown(toggleDropdown);
-
-  useEffect(() => {
-    setDetails({
-      organization: organization_default ?? "",
-      username: username ?? "",
-      email: email ?? "",
-      date: "",
-      phone_number: phone_number ?? "",
-      status: status_default ?? "",
-    });
-  }, [organization_default, username, email, phone_number, status_default]);
+    tempDetails,
+    handleReset,
+  } = useFilterDropdown(
+    data,
+    details,
+    setDetails,
+    toggleDropdown,
+    setPagination
+  );
 
   return (
     <div className="filter-dropdown">
@@ -49,8 +39,8 @@ const FilterDropdown = ({
           <div className="form-group">
             <label>Organization</label>
             <select
-              value={details.organization}
-              name="organization"
+              value={tempDetails.orgName}
+              name="orgName"
               onChange={handleOnChange}
             >
               <option value="">All</option>
@@ -63,7 +53,7 @@ const FilterDropdown = ({
             <label>Username</label>
             <Input
               placeholder="Username"
-              value={details.username}
+              value={tempDetails.username}
               onChange={handleOnChange}
               name="username"
             />
@@ -73,7 +63,7 @@ const FilterDropdown = ({
             <Input
               placeholder="Email"
               type="email"
-              value={details.email}
+              value={tempDetails.email}
               onChange={handleOnChange}
               name="email"
             />
@@ -83,29 +73,25 @@ const FilterDropdown = ({
             <Input
               placeholder="Date"
               type="date"
-              value={details.date ?? ""}
+              value={tempDetails.createdAt ?? ""}
               onChange={handleOnChange}
-              name="date"
+              name="createdAt"
             />
           </div>
           <div className="form-group">
             <label>Phone Number</label>
             <Input
               placeholder="Phone Number"
-              value={details.phone_number}
+              value=""
               onChange={handleOnChange}
               name="phone_number"
             />
           </div>
           <div className="form-group">
             <label>Status</label>
-            <select
-              value={details.status}
-              name="status"
-              onChange={handleOnChange}
-            >
+            <select value="" name="status">
               <option value="">All</option>
-              {Array.from(status).map((item) => (
+              {Array.from(statuses).map((item) => (
                 <option key={item}>{item}</option>
               ))}
             </select>
@@ -113,13 +99,7 @@ const FilterDropdown = ({
           <div className="form-actions">
             <button
               className="reset-btn"
-              onClick={() => {
-                setDetails(initial);
-                navigate(
-                  `/users?page=${pagination.currentPage}&per_page=${pagination.itemsPerPage}`
-                );
-                toggleDropdown();
-              }}
+              onClick={handleReset}
             >
               Reset
             </button>

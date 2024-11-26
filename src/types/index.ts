@@ -1,5 +1,62 @@
 import React from "react";
 
+export type SingleUser = {
+  createdAt: string;
+  orgName: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
+  lastActiveDate: string;
+  profile: {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    avatar: string;
+    gender: string;
+    bvn: string;
+    address: string;
+    currency: string;
+  };
+  guarantor: {
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    gender: string;
+    address: string;
+  };
+  accountBalance: string;
+  accountNumber: string;
+  socials: {
+    facebook: string;
+    instagram: string;
+    twitter: string;
+  };
+  education: {
+    level: string;
+    employmentStatus: string;
+    sector: string;
+    duration: string;
+    officeEmail: string;
+    monthlyIncome: [string, string];
+    loanRepayment: string;
+  };
+  id: string;
+} | null;
+
+export type Users = SingleUser[] | never[];
+
+export type UserDetails = {
+  orgName?: string;
+  username: string;
+  email: string;
+  createdAt?: string;
+};
+export interface UserParams {
+  page: number;
+  limit: number;
+  details: UserDetails;
+}
+
 export interface ButtonProps {
   text: string;
   onClick: (e?: any) => void;
@@ -14,9 +71,14 @@ export interface DropdownMenuProps {
 }
 
 export interface filterDropdownProps {
+  data: Users;
   isOpen: boolean;
   toggleDropdown: () => void;
-  pagination: { currentPage: number; itemsPerPage: number };
+  setPagination: React.Dispatch<
+    React.SetStateAction<{ page: number; limit: number }>
+  >;
+  details: UserDetails;
+  setDetails: React.Dispatch<React.SetStateAction<UserDetails>>;
 }
 
 export interface InputProps {
@@ -48,7 +110,7 @@ export interface SectionCompProps {
 }
 
 export interface DetailsProps {
-  user: any;
+  user?: any;
   loading: boolean;
 }
 
@@ -56,24 +118,27 @@ export interface StatusPillProps {
   status: string;
 }
 
-export interface TableProps {
+export interface PaginationProps {
+  pagination: {
+    page: number;
+    limit: number;
+  };
+  setPagination: React.Dispatch<
+    React.SetStateAction<{ page: number; limit: number }>
+  >;
+}
+export interface TableProps extends PaginationProps {
+  data: Users;
   thead: string[];
   loading: boolean;
   children: React.ReactNode;
-  currentPage: number;
-  itemsPerPage: number;
-  totalPages: number;
+  details: UserDetails;
+  setDetails: React.Dispatch<React.SetStateAction<UserDetails>>;
 }
 
 export interface TrProps {
   onClick?: (e?: any) => void;
   children: React.ReactNode;
-}
-
-export interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  itemsPerPage: number;
 }
 
 export interface ShellNavigationProps {
