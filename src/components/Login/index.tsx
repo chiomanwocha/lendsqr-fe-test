@@ -23,7 +23,7 @@ const Login = () => {
             <h2>Welcome!</h2>
             <p>Enter details to login.</p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} data-testid="form">
             <Input
               placeholder="Email"
               type="email"
