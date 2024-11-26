@@ -1,48 +1,32 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import filterIcon from "../../../assets/icons/filter.svg";
-import data from "../../../mocks/mock_users_500.json";
 import Input from "../Input";
-import "./filter.scss";
 import RenderIf from "../RenderIf";
-import { useLocation, useNavigate } from "react-router";
+import useFilterDropdown from "../../../hooks/useFilterDropdown";
+import { filterDropdownProps } from "../../../types";
+import "./filter.scss";
 
 const FilterDropdown = ({
   isOpen,
   toggleDropdown,
   pagination,
-}: {
-  isOpen: boolean;
-  toggleDropdown: () => void;
-  pagination: { currentPage: number; itemsPerPage: number };
-}) => {
-  const organizations = new Set(data.map((item) => item.organization));
-  const status = new Set(data.map((item) => item.status));
-
-  const { search } = useLocation(); // Extract the query string from the current URL
-  const params = new URLSearchParams(search);
-  const username = params.get("username");
-  const email = params.get("email");
-  const phone_number = params.get("phone_number");
-  const status_default = params.get("status");
-  const organization_default = params.get("organization");
-
-  const initial = {
-    organization: "",
-    username: "",
-    email: "",
-    date: "",
-    phone_number: "",
-    status: "",
-  };
-
-  const [details, setDetails] = useState<{
-    organization?: string;
-    username: string;
-    email: string;
-    date?: string;
-    phone_number: string;
-    status?: string;
-  }>(initial);
+}: filterDropdownProps) => {
+  const {
+    organization_default,
+    username,
+    email,
+    phone_number,
+    status_default,
+    details,
+    handleOnChange,
+    organizations,
+    status,
+    setDetails,
+    initial,
+    navigate,
+    handleFilter,
+  } = useFilterDropdown(toggleDropdown);
 
   useEffect(() => {
     setDetails({
@@ -54,33 +38,6 @@ const FilterDropdown = ({
       status: status_default ?? "",
     });
   }, [organization_default, username, email, phone_number, status_default]);
-
-  const handleOnChange = (e: { target: { name: string; value: string } }) => {
-    setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const navigate = useNavigate();
-
-  const handleFilter = () => {
-    const copiedDetails = details;
-    delete copiedDetails.date;
-
-    const urlParams = Object.entries(
-      Object.fromEntries(
-        Object.entries(details).filter(([_, value]) => value !== "")
-      )
-    )
-      .map(
-        ([key, value]) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-      )
-      .join("&");
-    if (urlParams) {
-      navigate(`?page=1&per_page=10&${urlParams}`);
-      toggleDropdown();
-      setDetails(initial);
-    }
-  };
 
   return (
     <div className="filter-dropdown">

@@ -1,17 +1,12 @@
 import { ReactComponent as Star } from "../../../../assets/icons/star.svg";
 import { ReactComponent as FilledStar } from "../../../../assets/icons/filled-star.svg";
+import { DetailsProps } from "../../../../types";
 import RenderIf from "../../../customs/RenderIf";
+import useDetails from "../../../../hooks/users/useDetails";
 import "./infocard.scss";
 
-const InfoCard = ({ user, loading }: { user: any; loading: boolean }) => {
-  const navigations = [
-    "General Details",
-    "Documents",
-    "Bank Details",
-    "Loans",
-    "Savings",
-    "App and System",
-  ];
+const InfoCard = ({ user, loading }: DetailsProps) => {
+  const { navigations } = useDetails();
 
   return (
     <RenderIf

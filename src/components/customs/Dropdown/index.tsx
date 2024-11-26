@@ -1,12 +1,8 @@
 import { useState } from "react";
 import option from "../../../assets/icons/options.svg";
 import RenderIf from "../RenderIf";
-
+import { DropdownMenuProps } from "../../../types";
 import "./dropdown.scss";
-
-interface DropdownMenuProps {
-  options: { label: string; icon: string; onClick: () => void }[];
-}
 
 const DropdownMenu = ({ options }: DropdownMenuProps) => {
   const [open, setOpen] = useState(false);

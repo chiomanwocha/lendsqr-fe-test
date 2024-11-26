@@ -1,5 +1,9 @@
 @import "../../../assets/styles/variables";
 
+.table-container {
+  min-height: 90vh;
+}
+
 table {
   box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(33, 63, 125, 0.06);

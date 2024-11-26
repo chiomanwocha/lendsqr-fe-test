@@ -1,11 +1,5 @@
+import { ButtonProps } from "../../../types";
 import "./button.scss";
-
-interface ButtonProps {
-  text: string;
-  onClick: (e?: any) => void;
-  type?: "button" | "submit";
-  isDisabled?: boolean;
-}
 
 const Button = ({
   text,

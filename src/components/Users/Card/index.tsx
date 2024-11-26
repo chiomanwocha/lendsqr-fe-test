@@ -1,12 +1,6 @@
+import { CardProps } from "../../../types";
 import RenderIf from "../../customs/RenderIf";
 import "./card.scss";
-
-interface CardProps {
-  icon: string;
-  title: string;
-  value: string;
-  loading: boolean;
-}
 
 const Card = ({ icon, title, value, loading }: CardProps) => {
   return (

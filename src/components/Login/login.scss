@@ -4,6 +4,7 @@ $section-width: 50%;
 
 .wrapper {
   @include flex();
+  font-family: 'AvenirNextLTPro', sans-serif;
   height: 100vh;
   .left-content {
     width: $section-width;

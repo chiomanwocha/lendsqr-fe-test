@@ -1,31 +1,12 @@
-import { useMemo, useState } from "react";
-import { useNavigate } from "react-router";
 import logo from "../../assets/icons/logo.svg";
 import pablo from "../../assets/images/pablo-sign-in.jpg";
 import Button from "../customs/Button";
 import Input from "../customs/Input";
-import './login.scss';
+import useLogin from "../../hooks/useLogin";
+import "./login.scss";
 
 const Login = () => {
-  const [details, setDetails] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleInputChange = (e: {
-    target: { name: string; value: string };
-  }) => {
-    setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const isDisabled = useMemo(() => {
-    return (
-      details.password.length < 5 ||
-      Object.keys(details).some((item) => item === "")
-    );
-  }, [details]);
-
-  const navigate = useNavigate();
+  const { navigate, details, handleInputChange, isDisabled } = useLogin();
 
   return (
     <section className="wrapper">

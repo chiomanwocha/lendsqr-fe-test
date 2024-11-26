@@ -1,14 +1,7 @@
 import { useState } from "react";
-import "./input.css";
+import { InputProps } from "../../../types";
 import RenderIf from "../RenderIf";
-
-interface InputProps {
-  placeholder: string;
-  type?: "email" | "text" | "password" | "number" | "date";
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import "./input.css";
 
 const Input = ({
   placeholder,

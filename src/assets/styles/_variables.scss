@@ -33,3 +33,24 @@ $breakpoint-lg: 1024px;
     background-color: rgba(200, 200, 200, 0.2);
   }
 }
+
+@font-face {
+  font-family: "AvenirNextLTPro";
+  src: url("../fonts/AvenirNextLTPro-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AvenirNextLTPro";
+  src: url("../fonts/AvenirNextLTPro-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AvenirNextLTPro";
+  src: url("../fonts/AvenirNextLTPro-It.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}

@@ -1,10 +1,4 @@
-import React from "react";
-
-interface RenderIfProps {
-  condition: boolean;
-  children: string | React.ReactNode;
-  elseNode?: string | React.ReactNode;
-}
+import { RenderIfProps } from "../../../types";
 
 const RenderIf = ({ condition, children, elseNode }: RenderIfProps) => {
   return <>{condition ? children : elseNode ?? null}</>;
