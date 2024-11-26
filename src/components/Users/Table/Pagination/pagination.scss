@@ -1,0 +1,114 @@
+@import "../../../../assets/styles/variables";
+
+.pagination {
+  @include flex(row, center, space-between);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: $slate-blue;
+  margin-top: 20px;
+
+  .pagination-info {
+    @include flex(row, center, left, 10px);
+
+    span {
+      margin: 0 5px;
+    }
+
+    .items-per-page {
+      padding: 4px 8px;
+      background-color: #e5e8ee;
+      font-weight: 500;
+      color: $navy-blue;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+
+  .pagination-controls {
+    font-family: "Work Sans", serif;
+    @include flex(row, center);
+
+    .pagination-button,
+    .pagination-page {
+      text-align: center;
+      width: 24px;
+      font-size: 16px;
+      background: none;
+      color: #979daf;
+      border-radius: 4px;
+      padding: 5px;
+      margin: 0 4px;
+      cursor: pointer;
+      @include transition(background-color);
+
+      &:hover {
+        background: #f0f0f0;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+
+    .pagination-button {
+      background: #e5e8ee;
+
+      &.prev {
+        rotate: 180deg;
+      }
+    }
+
+    .pagination-page.active {
+      color: #213f7d;
+    }
+  }
+
+  .page-list {
+    display: none;
+
+    span {
+      margin: 0 5px;
+    }
+
+    .page {
+      padding: 4px 8px;
+      background-color: #e5e8ee;
+      font-weight: 500;
+      color: $navy-blue;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .pagination {
+    @include flex(column, left, left, 10px);
+    margin-bottom: 20px;
+
+    .pagination-info {
+      @include flex(row, center, end, 10px);
+      width: 100%;
+    }
+
+    .pagination-controls {
+      display: none;
+    }
+
+    .page-list {
+      width: 100%;
+      @include flex(row, center, end, 10px);
+    }
+
+    .pagination-button,
+    .pagination-page {
+      font-size: 14px;
+      width: fit-content;
+    }
+  }
+}

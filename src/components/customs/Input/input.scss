@@ -1,0 +1,42 @@
+@import "../../../assets/styles/variables";
+
+.input-container {
+  position: relative;
+  @include flex(row, center);
+  width: 100%;
+}
+
+input {
+  border: 2px solid rgba(84, 95, 125, 0.15);
+  border-radius: 5px;
+  color: $slate-blue;
+  background-color: white;
+  padding: 16px 17.5px 12.5px;
+  @include transition(border-color);
+  width: 100%;
+
+  &::placeholder {
+    font-size: 14px;
+  }
+
+  &:focus {
+    border-color: $turquoise;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.1);
+    outline: none;
+  }
+}
+
+.toggle-visibility {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: $turquoise;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

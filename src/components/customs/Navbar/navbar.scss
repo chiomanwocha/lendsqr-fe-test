@@ -1,0 +1,119 @@
+@import "../../../assets/styles/variables";
+
+aside {
+  @include flex(row, center, space-between);
+  padding: 30px 26px;
+  box-shadow: 3px 0 20px rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+}
+
+.search-bar {
+  @include flex();
+  width: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  input {
+    border-radius: 8px 0 0 8px;
+    border: 1px solid rgba(84, 95, 125, 0.15); 
+    border-right: none;
+
+    &:focus {
+      border-color: $turquoise;
+    }
+  }
+
+  button {
+    border-radius: 0;
+    border: 1px solid $turquoise;
+    max-width: 56px;
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    display: none;
+  }
+}
+
+.profile {
+  @include flex();
+
+  p {
+    text-decoration: underline;
+    color: $navy-blue;
+    margin-right: 47px;
+  }
+
+  div[role="button"] {
+    margin-right: 30px;
+  }
+
+  .avatar-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .name {
+    @include flex(row, center, center, 10px);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+.mobile-nav {
+  display: none;
+
+  @media (max-width: $breakpoint-md) {
+    display: block;
+
+    .hamburger {
+      width: 40px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .sidebar-container {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      background-color: white;
+
+      nav {
+        height: 100vh;
+        width: 100vw;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  aside {
+    padding: 15px;
+  }
+
+  .logo {
+    max-width: 140px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
