@@ -1,46 +1,90 @@
-# Getting Started with Create React App
+# Lendsqr Frontend Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This application is a frontend solution for the Lendsqr Admin Console. It consists of four pages:
 
-In the project directory, you can run:
+1. **Login Page**: A user authentication interface.
+2. **Dashboard**: Displays user statistics in a card layout.
+3. **Users Page**: A paginated and filterable table displaying user data fetched from a mock API.
+4. **User Details Page**: Displays detailed user information stored in `localStorage` or `IndexedDB`.
 
-### `npm start`
+The application is fully responsive and closely follows the provided Figma design.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **React**: JavaScript library for building user interfaces.
+- **TypeScript**: For type safety and better developer tooling.
+- **SCSS**: For modular, maintainable, and reusable styles.
+- **React Router**: For client-side routing.
+- **Axios**: For API requests.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Setup Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Follow these steps to set up the project locally:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/chiomanwocha/lendsqr-fe-test.git
+   cd lendsqr-fe-test
+   ```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Run the application**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ````bash
+   npm start
+   ````
+   The application will be accessible at http://localhost:3000.
+   
 
-### `npm run eject`
+4. **Build for production**:
+   ````bash
+   npm run build
+   ````
+   This creates an optimized production build in the build/ directory.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deployment Details
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The application is deployed and accessible at:  
+**[Live Demo](https://chioma-nwocha-lendsqr-fe-test.vercel.app/)**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## Testing Details
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run the tests, use the following command:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run build
+```
+
+This launches the test runner in interactive watch mode.
+
+### Tests include:
+
+- **Unit Tests**: For individual components and hooks.
+- **Integration Tests**: To verify user flows and inter-component communication.
+- **Positive and Negative Scenarios**: Ensuring functionality under valid and invalid conditions.
+
+---
+
+## Additional Notes
+
+### Unique Features and Design Choices:
+
+1. **Mock API**: Leveraged the Lendsqr mock API containing 500 records.
+2. **User Details Storage**: Utilized `IndexedDB` to fetch individual user data by calling the `/user/:id` endpoint.
+3. **Reusable Components**: Created modular components such as `Button`, `Card`, `Table`, and `DropdownMenu` to ensure maintainability and scalability.
+4. **SCSS Utilities**: Implemented SCSS mixins for common patterns like `flexbox`, `media queries`, and `transitions`.
+5. **Responsive Design**: Designed the application to adapt seamlessly to various screen sizes, providing an optimal user experience across mobile, tablet, and desktop devices.
+
+---
