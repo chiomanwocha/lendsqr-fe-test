@@ -5,7 +5,8 @@ $green: #28a745;
 
 .container {
   margin: 20px 0 40px;
-  @include flex(row, center, space-between);
+  @include flex(row, center, space-between, 10px);
+  flex-wrap: wrap;
 
   h2 {
     margin: 0;
