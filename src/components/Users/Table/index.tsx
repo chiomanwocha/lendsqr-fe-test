@@ -61,7 +61,10 @@ const Table = ({
       </table>
       <div className="footer-pagination">
         <RenderIf condition={!loading}>
-          <Pagination pagination={pagination} setPagination={setPagination} />
+          <Pagination
+            pagination={pagination}
+            setPagination={setPagination}
+          />
         </RenderIf>
       </div>
     </div>

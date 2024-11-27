@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import all from "../../assets/icons/users/all.svg";
@@ -34,6 +35,25 @@ const useUsers = () => {
   };
 
   useEffect(() => {
+    const assignRandomStatus = (users: any) => {
+      return users.map((user: any) => ({
+        ...user,
+        status: getRandomStatus(),
+      }));
+    };
+
+    const fetchData = async (params: UserParams) => {
+      setLoading(true);
+      try {
+        const data = await fetchUsers(params);
+        setUsers(assignRandomStatus(data));
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchData({ ...pagination, details });
   }, [pagination, details]);
 

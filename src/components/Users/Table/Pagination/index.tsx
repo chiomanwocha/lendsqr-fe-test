@@ -12,6 +12,7 @@ const Pagination = ({ pagination, setPagination }: PaginationProps) => {
     handleLimitChange,
   } = usePagination(pagination, setPagination);
 
+
   return (
     <div className="pagination">
       <div className="pagination-info">

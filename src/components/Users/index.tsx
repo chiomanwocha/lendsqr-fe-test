@@ -24,7 +24,6 @@ const Users = () => {
     pagination,
     setPagination,
     formatDate,
-    getRandomStatus,
     details,
     setDetails,
   } = useUsers();
@@ -68,7 +67,7 @@ const Users = () => {
             <td>{item?.profile?.phoneNumber}</td>
             <td>{formatDate(item?.createdAt)}</td>
             <td>
-              <StatusPill status={getRandomStatus()} />
+              <StatusPill status={item?.status} />
             </td>
             <td
               onClick={(e) => {

@@ -10,8 +10,12 @@ const usePagination = (
   >
 ) => {
   const navigate = useNavigate();
+
+  const totalPages = Math.ceil(500 / pagination.limit);
+
   const getPaginationRange = (currentPage: number, totalPages: number) => {
-    const range = [];
+    const range: (number | string)[] = [];
+
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) {
         range.push(i);
@@ -28,10 +32,10 @@ const usePagination = (
     return range;
   };
 
-  const totalPages = Math.ceil(500 / pagination.limit);
-
   const handlePageChange = (newPage: number) => {
-    setPagination((prev) => ({ ...prev, page: newPage }));
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPagination((prev) => ({ ...prev, page: newPage }));
+    }
   };
 
   const handleLimitChange = (newLimit: string) => {

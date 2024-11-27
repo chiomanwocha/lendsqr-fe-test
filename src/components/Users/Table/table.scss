@@ -47,9 +47,6 @@ table {
   }
 
   td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     padding: 20px 35px 20px 0;
     border-bottom: 1px solid rgba(33, 63, 125, 0.1);
     color: $slate-blue;
@@ -98,9 +95,6 @@ table {
   td {
     max-width: 200px;
     padding: 16px 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .footer-pagination {

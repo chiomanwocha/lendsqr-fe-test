@@ -1,5 +1,5 @@
 import logo from "../../assets/icons/logo.svg";
-import pablo from "../../assets/images/pablo-sign-in.jpg";
+import pablo from "../../assets/icons/pablo.svg";
 import Button from "../customs/Button";
 import Input from "../customs/Input";
 import useLogin from "../../hooks/useLogin";

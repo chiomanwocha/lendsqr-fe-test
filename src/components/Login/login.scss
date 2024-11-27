@@ -10,7 +10,6 @@ $section-width: 50%;
     width: $section-width;
     padding: 106px 69px 0 97px;
     @include flex(column, left, left, 139px);
-    background: $off-white;
     .logo-container {
       padding: 0 0 0 30px;
     }
@@ -27,7 +26,9 @@ $section-width: 50%;
   }
   .right-content {
     width: $section-width;
+    background-color: white;
     padding: 0 157px 0 100px;
+    height: 100vh;
     @include flex();
     align-items: center;
     div {
